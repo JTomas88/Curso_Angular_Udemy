@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { GifListItemComponent } from './gif-list-item/gif-list-item.component';
+import { Gif } from '../../interfaces/gif.interface';
 
 @Component({
   selector: 'gif-list',
@@ -9,8 +10,8 @@ import { GifListItemComponent } from './gif-list-item/gif-list-item.component';
 })
 export class GifListComponent {
   /**
-   * Declaramos una variable gifs que recibe a través del input un arreglo de strings.
-   * Este arreglo de strings es una señal.
+   * Declaramos una variable gifs que recibe a través del input un arreglo de Gifs.
+   * Este arreglo de Gifs es una señal.
    */
-  gifs = input.required<string[]>();
+  gifs = input.required<Gif[]>();
 }

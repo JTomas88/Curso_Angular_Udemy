@@ -2,6 +2,6 @@
   <!--Con el for recorrmos la lista de gifs (la que se recibe en el ts) y por cada string que recibe
   se lo pasa a gif-list-item-->
   @for (gif of gifs(); track gif) {
-  <gif-list-item [imageUrl]="gif" />
+  <gif-list-item [imageUrl]="gif.url" />
   }
 </div>
