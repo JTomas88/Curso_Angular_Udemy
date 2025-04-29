@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { computed, inject, Injectable, signal } from '@angular/core';
+import { computed, effect, inject, Injectable, signal } from '@angular/core';
 import { environment } from '@environments/environment';
 import type { GiphyResponse } from '../interfaces/gyphy.interfaces';
 import { Gif } from '../interfaces/gif.interface';
@@ -15,6 +15,12 @@ import { map, Observable, tap } from 'rxjs';
 //Lo de arriba sería algo así:
 // Record<string, Gif[]>
 
+const loadFromLocalStorage = () => {
+  const gifsFromLocalStorage = localStorage.getItem('gifs') ?? '{}'; //Record <string, gifs [];
+  const gifs = JSON.parse(gifsFromLocalStorage);
+  return gifs;
+};
+
 @Injectable({
   providedIn: 'root',
 })
@@ -24,12 +30,24 @@ export class GifsService {
   trendingGifs = signal<Gif[]>([]);
   trendingGifsLoading = signal(true);
 
-  searchHistory = signal<Record<string, Gif[]>>({});
+  searchHistory = signal<Record<string, Gif[]>>(loadFromLocalStorage());
   searchHistoryWords = computed(() => Object.keys(this.searchHistory()));
 
   constructor() {
     this.loadTrendingGifs();
   }
+
+  /**
+   * Creamos este efecto, que se va a disparar cada vez que nuestra señal searchHistory cambie.
+   * Luego almacenamos en el localStorage, y le pasamos el valor que hemos creado historyString.
+   * Esto ya graba en nuestro localStorage, pero no almancena si recargamos el navegador, ya que
+   * más arriba el valor de searchHistory está vacío y por eso al recargar se sobreescribe.
+   * Creamos la función loadFromLocalStorag y se lo pasamos a la señal searchHistory
+   */
+  saveGifsToLocalStorage = effect(() => {
+    const historyString = JSON.stringify(this.searchHistory());
+    localStorage.setItem('gifs', historyString);
+  });
 
   loadTrendingGifs() {
     this.http
