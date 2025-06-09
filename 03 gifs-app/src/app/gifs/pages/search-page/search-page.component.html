@@ -1,8 +1,10 @@
 <h2 class="text-2xl font-bold mt-5">Buscar Gifs</h2>
-<h3 class="text-sm font-text-gray-500">
-  Buscar Gifs por nombre, descripción o tags
-</h3>
 
+<h2 class="text-sm text-gray-500">
+  Buscar Gifs por nombre, descripción o tags
+</h2>
+
+<!-- Input del buscador -->
 <section class="flex flex-col gap-4">
   <input
     type="text"
@@ -13,9 +15,8 @@
   />
 </section>
 
-<section class="py-5">
-  <!--Envia la lista de gifs al componente hijo que va a recorrer la lista.-->
-  <!-- <gif-list [gifs]="gifs" /> -->
+<div class="py-5">
+  <!-- Debemos traer aquí los gifs que queremos mostrar, que están en el trending-page-component.ts -->
 
-  <gif-list [gifs]="gifsAMostrar()" />
-</section>
+  <gif-list [gifs]="gifs()" />
+</div>

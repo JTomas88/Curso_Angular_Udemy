@@ -1,39 +1,39 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  inject,
-  signal,
-} from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
-import { GifsService } from '../../services/gifs.service';
+import { GifsService } from '../../../services/gifs.services';
 
 interface MenuOption {
-  icon: string;
   label: string;
-  route: string;
   subLabel: string;
+  route: string;
+  icon: string;
 }
 
 @Component({
-  selector: 'gifs-side-menu-options',
+  selector: 'gif-side-menu-options',
   imports: [RouterLink, RouterLinkActive],
   templateUrl: './side-menu-options.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SideMenuOptionsComponent {
-  GifsService = inject(GifsService);
-  menuOptiones: MenuOption[] = [
+  gifsService = inject(GifsService);
+
+  historial: any;
+  /**
+   * Creo una property que va a ser un arreglo que contenga datos en un array del tipo MenuOption
+   * Dentro creo 2 objetovs
+   */
+  menuOptions: MenuOption[] = [
     {
       icon: 'fa-solid fa-chart-line',
       label: 'Trending',
-      route: '/dashboard/trending',
       subLabel: 'Gifs Populares',
+      route: '/dashboard/trending',
     },
     {
       icon: 'fa-solid fa-magnifying-glass',
       label: 'Buscador',
-      route: '/dashboard/search',
       subLabel: 'Buscar gifs',
+      route: '/dashboard/search',
     },
   ];
 }

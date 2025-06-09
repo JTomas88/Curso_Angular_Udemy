@@ -1,0 +1,42 @@
+<div id="nav" class="w-full px-6">
+  <!-- Creamos un for que recorra la property creada en el ts, para que se muestren las opciones de Trending y Buscar en el menú lateral -->
+  <!-- Importamos el routerLink en el ts para que el componente reconozca esa directiva -->
+  <!-- Ponemos el routerLinkActive también, para que resalte en azul el link en el que nos encontramos -->
+  @for (item of menuOptions; track item.route) {
+  <a
+    [routerLink]="item.route"
+    routerLinkActive="bg-blue-800"
+    class="w-full px-2 inline-flex space-x-2 items-center border-b border-slate-700 py-3 hover:bg-white/5 transition ease-linear duration-150"
+  >
+    <div>
+      <i class="{{ item.icon }}"></i>
+    </div>
+    <div class="flex flex-col">
+      <span class="text-lg font-bold leading-5 text-white">{{
+        item.label
+      }}</span>
+      <span class="text-sm text-white/50 hidden md:block">{{
+        item.subLabel
+      }}</span>
+    </div>
+  </a>
+  }
+  <!-- Con este for llamamos a searchHistoryKeys que está en el servicio  y le pasamos la key que hemos buscado
+  en el buscador, se van quedando en el panel lateral de la pagina
+  [routerLink]="['/dashboard/histoy', key]": navegamos hasta la ruta y pasamos el valor buscado
+  -->
+  @for (key of gifsService.searchHistoryKeys(); track key) {
+  <a
+    [routerLink]="['/dashboard/history', key]"
+    routerLinkActive="bg-blue-800"
+    class="w-full px-2 inline-flex space-x-2 items-center border-b border-slate-700 py-3 hover:bg-white/5 transition ease-linear duration-150"
+  >
+    <div>
+      <i class="fa-solid fa-clock-rotate-left"></i>
+    </div>
+    <div class="flex flex-col">
+      <span class="text-lg font-bold leading-5 text-white">{{ key }}</span>
+    </div>
+  </a>
+  }
+</div>

@@ -44,7 +44,7 @@ export interface Images {
   downsized: The480_WStill;
   downsized_large: The480_WStill;
   downsized_medium: The480_WStill;
-  downsized_small: DownsizedSmall;
+  downsized_small: The4_K;
   downsized_still: The480_WStill;
   fixed_height: FixedHeight;
   fixed_height_downsampled: FixedHeight;
@@ -58,12 +58,13 @@ export interface Images {
   fixed_width_still: The480_WStill;
   looping: Looping;
   original_still: The480_WStill;
-  original_mp4: DownsizedSmall;
-  preview: DownsizedSmall;
+  original_mp4: The4_K;
+  preview: The4_K;
   preview_gif: The480_WStill;
   preview_webp: The480_WStill;
-  hd?: DownsizedSmall;
+  hd?: The4_K;
   '480w_still': The480_WStill;
+  '4k'?: The4_K;
 }
 
 export interface The480_WStill {
@@ -73,7 +74,7 @@ export interface The480_WStill {
   url: string;
 }
 
-export interface DownsizedSmall {
+export interface The4_K {
   height: string;
   width: string;
   mp4_size: string;

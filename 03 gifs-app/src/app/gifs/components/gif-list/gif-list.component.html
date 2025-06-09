@@ -1,7 +1,0 @@
-<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-  <!--Con el for recorrmos la lista de gifs (la que se recibe en el ts) y por cada string que recibe
-  se lo pasa a gif-list-item-->
-  @for (gif of gifs(); track gif) {
-  <gif-list-item [imageUrl]="gif.url" />
-  }
-</div>

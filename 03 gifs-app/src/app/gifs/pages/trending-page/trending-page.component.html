@@ -1,6 +1,25 @@
-<section class="py-5">
-  <!--Envia la lista de gifs al componente hijo que va a recorrer la lista.-->
-  <!-- <gif-list [gifs]="gifs" /> -->
+<!-- <div class="py-5"> -->
+<!-- Debemos traer aquí los gifs que queremos mostrar, que están en el trending-page-component.ts -->
 
-  <gif-list [gifs]="gifService.trendingGifs()" />
-</section>
+<!-- <gif-list [gifs]="gifService.trendingGifs()" />
+</div> -->
+
+<div
+  class="h-screen overflow-y-scroll grid grid-cols-2 md:grid-cols-4 gap-4 pt-5"
+  (scroll)="onScroll($event)"
+  #groupDiv
+>
+  @for (group of gifService.trendingGifsGroup(); track $index) {
+  <div class="grid gap-4">
+    @for (gif of group; track gif.id) {
+    <div>
+      <img
+        class="h-auto max-w-full rounded-lg"
+        [src]="gif.url"
+        [alt]="gif.title"
+      />
+    </div>
+    }
+  </div>
+  }
+</div>

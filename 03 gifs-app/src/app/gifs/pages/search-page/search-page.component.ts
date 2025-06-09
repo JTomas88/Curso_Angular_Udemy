@@ -1,7 +1,7 @@
 import { Component, inject, signal } from '@angular/core';
-import { GifListComponent } from '../../components/gif-list/gif-list.component';
-import { GifsService } from '../../services/gifs.service';
-import { Gif } from '../../interfaces/gif.interface';
+import { GifListComponent } from '../../components/side-menu/gif-list/gif-list.component';
+import { GifsService } from '../../services/gifs.services';
+import { Gif } from '../../interfaces/gif.interfaces';
 
 @Component({
   selector: 'app-search-page',
@@ -9,12 +9,13 @@ import { Gif } from '../../interfaces/gif.interface';
   templateUrl: './search-page.component.html',
 })
 export default class SearchPageComponent {
-  GifsService = inject(GifsService);
-  gifsAMostrar = signal<Gif[]>([]);
+  gifService = inject(GifsService);
+  gifs = signal<Gif[]>([]);
 
   onSearch(query: string) {
-    this.GifsService.searchGifs(query).subscribe((respuesta) => {
-      this.gifsAMostrar.set(respuesta);
+    this.gifService.searchGifs(query).subscribe((respuesta) => {
+      this.gifs.set(respuesta);
+      //console.log(respuesta);
     });
   }
 }
