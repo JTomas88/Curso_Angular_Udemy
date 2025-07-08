@@ -1,6 +1,9 @@
 <!-- Input para buscar y botón de buscar -->
 <!-- PlaceHolderRecibido toma el valor de lo que tenga entre "" -->
-<country-search-input [placeholderRecibido]="'Buscar por capital de mi país'" />
+<country-search-input
+  [placeholderRecibido]="'Buscar por capital de mi país'"
+  (value)="buscarPorCapital($event)"
+/>
 
 <!-- Tabla -->
 <country-list />
