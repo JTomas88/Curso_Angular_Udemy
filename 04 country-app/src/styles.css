@@ -2,3 +2,8 @@
 @plugin "daisyui" {
   themes: light --default, dark --prefersdark, cupcake;
 }
+
+a.active {
+  background-color: red;
+  color: white;
+}
